@@ -120,8 +120,6 @@ Development files for %{name}.
 
 %prep
 %setup -q
-#% patch0 -p1
-%patch1 -p1
 
 %build
 autoreconf -ifv
