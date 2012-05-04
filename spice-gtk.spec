@@ -20,8 +20,6 @@ Group:		Networking/Remote access
 URL:		http://spice-space.org/page/Spice-Gtk
 License:	LGPLv2+
 Source0:	http://www.spice-space.org/download/gtk/%{name}-%{version}.tar.bz2
-Patch0:		0001-Fix-parsing-URI-query.patch
-Patch1:		linkage_fix.0.11.patch
 BuildRequires:	pkgconfig(cairo) >= 1.2.0
 BuildRequires:	pkgconfig(celt051) >= 0.5.1.1
 BuildRequires:	pkgconfig(gio-2.0) >= 2.10.0
