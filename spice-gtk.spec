@@ -7,13 +7,15 @@
 %define gtkapi		3.0
 %define gtkmajor	1
 %define libgtk		%mklibname spice-client-gtk %{gtkapi} %{gtkmajor}
+%define libgtk2		%mklibname spice-client-gtk 2.0 1
 %define gtkgir		%mklibname spice-client-gtk-gir %{gtkapi}
+%define gtk2gir		%mklibname spice-client-gtk-gir 2.0
 %define controllermajor	0
 %define libcontroller	%mklibname spice-controller %{controllermajor}
 %define develname	%mklibname -d %{name}
 
 Name:		spice-gtk
-Version:	0.11
+Version:	0.12
 Release:	1
 Summary:	A GTK client widget for accessing SPICE desktop servers
 Group:		Networking/Remote access
@@ -50,6 +52,9 @@ BuildRequires:	gettext-devel
 BuildRequires:	perl-Text-CSV
 BuildRequires:	intltool
 BuildRequires:	ldetect-lst
+BuildRequires:	python-parsing
+# for virtmanager
+BuildRequires:	pygtk2.0-devel
 
 %if %{build_vala}
 BuildRequires:	vala
@@ -105,6 +110,31 @@ Conflicts: %{_lib}spice-gtk3.0_1 < 0.7.81-2
 %description -n %{libcontroller}
 Runtime libraries for %{name}.
 
+%package -n %{libgtk2}
+Summary: Runtime libraries for %{name}
+Group: System/Libraries
+
+%description -n %{libgtk2}
+GTK2 Runtime libraries for %{name}.
+
+%package -n %{gtk2gir}
+Summary: GTK2GObject introspection interface library for %{name}
+Group: System/Libraries
+Requires: %{libgtk2} = %{version}-%{release}
+
+%description -n %{gtk2gir}
+GTK2 GObject introspection interface library for %{name}.
+
+%package -n python
+Summary: Python bindings for the spice-gtk-2.0 library
+Group: System/Libraries
+Requires: %{name}%{?_isa} = %{version}-%{release}
+
+%description -n python
+SpiceClientGtk module provides a SPICE viewer widget for GTK2.
+
+A module allowing use of the spice-gtk-2.0 widget from python
+
 %package -n %{develname}
 Summary: Development files for %{name}
 Group: Development/C
@@ -118,10 +148,21 @@ Obsoletes: %{_lib}spice-gtk3.0-devel < 0.7.81-2
 Development files for %{name}.
 
 %prep
-%setup -q
+%setup -q  -n spice-gtk-%{version} -c
+pushd spice-gtk-%{version}
 %patch0 -p1
+popd
+
+cp -a spice-gtk-%{version} spice-gtk3-%{version}
 
 %build
+cd spice-gtk-%{version}
+autoreconf -ifv
+%configure --with-gtk=2.0 --enable-gtk-doc
+make
+cd ..
+
+cd spice-gtk3-%{version}
 autoreconf -ifv
 %configure2_5x \
 	--with-gtk=%{gtkapi} \
@@ -134,14 +175,24 @@ autoreconf -ifv
 	--enable-introspection=yes \
 	--enable-usbredir \
 	--with-pnp-ids-path=%{_datadir}/misc/pnp.ids
-
 #% make V=1
-make LIBS='-lrt'
+#make LIBS='-lrt'
+%make
+cd ..
 
 %install
+cd spice-gtk-%{version}
 %makeinstall_std
+cd ..
+
+cd spice-gtk3-%{version}
+%makeinstall_std
+cd ..
 
 rm -f %{buildroot}%{_libdir}/*.la
+rm -f %{buildroot}%{_libdir}/*.a
+rm -f %{buildroot}%{_libdir}/python*/site-packages/*.a
+rm -f %{buildroot}%{_libdir}/python*/site-packages/*.la
 
 %if ! %{build_vala}
 	rm -rf %{buildroot}%{_datadir}/vala/
@@ -174,19 +225,33 @@ rm -f %{buildroot}%{_libdir}/*.la
 %{_libdir}/libspice-controller.so.%{controllermajor}
 %{_libdir}/libspice-controller.so.%{controllermajor}.*
 
+%files -n %{libgtk2}
+%{_libdir}/libspice-client-gtk-2.0.so.1
+%{_libdir}/libspice-client-gtk-2.0.so.1.*
+
+%files -n %{gtk2gir}
+%{_libdir}/girepository-1.0/SpiceClientGtk-2.0.typelib
+
+%files -n python
+%{_libdir}/python*/site-packages/SpiceClientGtk.so
+
 %files -n %{develname}
 %doc %{_datadir}/gtk-doc/html/spice-gtk
 %{_includedir}/spice-client-glib-2.0
 %{_includedir}/spice-client-gtk-3.0/
+%{_includedir}/spice-client-gtk-2.0/
 %{_includedir}/spice-controller/
 %{_libdir}/libspice-client-glib-2.0.so
 %{_libdir}/libspice-client-gtk-3.0.so
+%{_libdir}/libspice-client-gtk-2.0.so
 %{_libdir}/libspice-controller.so
 %{_libdir}/pkgconfig/spice-client-glib-2.0.pc
 %{_libdir}/pkgconfig/spice-client-gtk-3.0.pc
+%{_libdir}/pkgconfig/spice-client-gtk-2.0.pc
 %{_libdir}/pkgconfig/spice-controller.pc
 %{_datadir}/gir-1.0/SpiceClientGLib-2.0.gir
 %{_datadir}/gir-1.0/SpiceClientGtk-3.0.gir
+%{_datadir}/gir-1.0/SpiceClientGtk-2.0.gir
 %if %{build_vala}
 %{_datadir}/vala/vapi/spice-protocol.vapi
 %{_datadir}/vala/vapi/spice-client-glib-%{glibapi}.deps
