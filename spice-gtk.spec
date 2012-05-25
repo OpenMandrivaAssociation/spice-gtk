@@ -125,12 +125,12 @@ Requires: %{libgtk2} = %{version}-%{release}
 %description -n %{gtk2gir}
 GTK2 GObject introspection interface library for %{name}.
 
-%package -n python
+%package python
 Summary: Python bindings for the spice-gtk-2.0 library
 Group: System/Libraries
 Requires: %{name}%{?_isa} = %{version}-%{release}
 
-%description -n python
+%description python
 SpiceClientGtk module provides a SPICE viewer widget for GTK2.
 
 A module allowing use of the spice-gtk-2.0 widget from python
@@ -232,7 +232,7 @@ rm -f %{buildroot}%{_libdir}/python*/site-packages/*.la
 %files -n %{gtk2gir}
 %{_libdir}/girepository-1.0/SpiceClientGtk-2.0.typelib
 
-%files -n python
+%files python
 %{_libdir}/python*/site-packages/SpiceClientGtk.so
 
 %files -n %{develname}
