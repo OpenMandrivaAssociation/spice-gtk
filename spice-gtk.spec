@@ -1,11 +1,11 @@
 %define build_vala	1
 
 %define glibapi		2.0
-%define glibmajor	1
+%define glibmajor	8
 %define libglib		%mklibname spice-client-glib %{glibapi} %{glibmajor}
 %define glibgir		%mklibname spice-client-glib-gir %{glibapi}
 %define gtkapi		3.0
-%define gtkmajor	1
+%define gtkmajor	4
 %define libgtk		%mklibname spice-client-gtk %{gtkapi} %{gtkmajor}
 %define libgtk2		%mklibname spice-client-gtk 2.0 1
 %define gtkgir		%mklibname spice-client-gtk-gir %{gtkapi}
@@ -15,7 +15,7 @@
 %define develname	%mklibname -d %{name}
 
 Name:		spice-gtk
-Version:	0.12
+Version:	0.14
 Release:	1
 Summary:	A GTK client widget for accessing SPICE desktop servers
 Group:		Networking/Remote access
@@ -150,7 +150,7 @@ Development files for %{name}.
 %prep
 %setup -q  -n spice-gtk-%{version} -c
 pushd spice-gtk-%{version}
-%patch0 -p1
+#% patch0 -p1
 popd
 
 cp -a spice-gtk-%{version} spice-gtk3-%{version}
@@ -226,8 +226,8 @@ rm -f %{buildroot}%{_libdir}/python*/site-packages/*.la
 %{_libdir}/libspice-controller.so.%{controllermajor}.*
 
 %files -n %{libgtk2}
-%{_libdir}/libspice-client-gtk-2.0.so.1
-%{_libdir}/libspice-client-gtk-2.0.so.1.*
+%{_libdir}/libspice-client-gtk-2.0.so.4
+%{_libdir}/libspice-client-gtk-2.0.so.4.*
 
 %files -n %{gtk2gir}
 %{_libdir}/girepository-1.0/SpiceClientGtk-2.0.typelib
