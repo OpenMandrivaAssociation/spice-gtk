@@ -23,6 +23,7 @@ URL:		http://spice-space.org/page/Spice-Gtk
 License:	LGPLv2+
 Source0:	http://www.spice-space.org/download/gtk/%{name}-%{version}.tar.bz2
 Patch0:		automake1.12.patch
+Patch1:		spice-gtk-0.14.usbredir.patch
 BuildRequires:	pkgconfig(cairo) >= 1.2.0
 BuildRequires:	pkgconfig(celt051) >= 0.5.1.1
 BuildRequires:	pkgconfig(gio-2.0) >= 2.10.0
@@ -38,6 +39,7 @@ BuildRequires:	pkgconfig(libpulse)
 BuildRequires:	pkgconfig(libpulse-mainloop-glib)
 BuildRequires:	pkgconfig(libusb-1.0) >= 1.0.9
 BuildRequires:	pkgconfig(libusbredirhost) >= 0.3.3
+BuildRequires:	pkgconfig(libusbredirparser-0.5)
 BuildRequires:	pkgconfig(openssl)
 BuildRequires:	pkgconfig(pixman-1) >= 0.17.7
 BuildRequires:	pkgconfig(polkit-gobject-1)
@@ -151,6 +153,7 @@ Development files for %{name}.
 %setup -q  -n spice-gtk-%{version} -c
 pushd spice-gtk-%{version}
 #% patch0 -p1
+%patch1 -p1 -b .usbredir
 popd
 
 cp -a spice-gtk-%{version} spice-gtk3-%{version}

@@ -1,0 +1,11 @@
+--- spice-gtk-0.14/configure.ac.usbredir	2012-09-14 13:12:18.000000000 +0400
++++ spice-gtk-0.14/configure.ac	2012-10-24 21:25:46.907029342 +0400
+@@ -350,7 +350,7 @@ if test "x$enable_usbredir" = "xno"; the
+   have_usbredir="no"
+ else
+   PKG_CHECK_MODULES([USBREDIR],
+-                    [libusb-1.0 >= 1.0.9 libusbredirhost >= 0.4.2 libusbredirparser >= 0.4],
++                    [libusb-1.0 >= 1.0.9 libusbredirhost >= 0.4.2 libusbredirparser-0.5 >= 0.4],
+                     [have_usbredir=yes],
+                     [have_usbredir=no])
+   if test "x$have_usbredir" = "xno" && test "x$enable_usbredir" = "xyes"; then
