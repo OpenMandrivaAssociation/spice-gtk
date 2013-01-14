@@ -22,7 +22,7 @@ Group:		Networking/Remote access
 URL:		http://spice-space.org/page/Spice-Gtk
 License:	LGPLv2+
 Source0:	http://www.spice-space.org/download/gtk/%{name}-%{version}.tar.bz2
-Patch0:		automake1.12.patch
+Patch0:		automake1.13.patch
 Patch1:		spice-gtk-0.14.usbredir.patch
 BuildRequires:	pkgconfig(cairo) >= 1.2.0
 BuildRequires:	pkgconfig(celt051) >= 0.5.1.1
@@ -152,8 +152,8 @@ Development files for %{name}.
 %prep
 %setup -q  -n spice-gtk-%{version} -c
 pushd spice-gtk-%{version}
-#% patch0 -p1
-%patch1 -p1 -b .usbredir
+%patch0 -p1
+%patch1 -p1
 popd
 
 cp -a spice-gtk-%{version} spice-gtk3-%{version}
