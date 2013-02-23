@@ -49,7 +49,7 @@ BuildRequires:	pkgconfig(x11)
 BuildRequires:	pkgconfig(xrandr)
 BuildRequires:	gtk-doc >= 1.14
 BuildRequires:	libsasl2-devel
-BuildRequires:	libjpeg-devel
+BuildRequires:	jpeg-devel
 BuildRequires:	gettext-devel
 BuildRequires:	perl-Text-CSV
 BuildRequires:	intltool
