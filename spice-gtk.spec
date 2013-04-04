@@ -48,7 +48,7 @@ BuildRequires:	pkgconfig(spice-protocol) >= 0.10.1
 BuildRequires:	pkgconfig(x11)
 BuildRequires:	pkgconfig(xrandr)
 BuildRequires:	gtk-doc >= 1.14
-BuildRequires:	libsasl2-devel
+BuildRequires:	sasl-devel
 BuildRequires:	jpeg-devel
 BuildRequires:	gettext-devel
 BuildRequires:	perl-Text-CSV
