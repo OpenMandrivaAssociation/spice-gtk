@@ -15,15 +15,13 @@
 %define develname	%mklibname -d %{name}
 
 Name:		spice-gtk
-Version:	0.14
+Version:	0.19
 Release:	1
 Summary:	A GTK client widget for accessing SPICE desktop servers
 Group:		Networking/Remote access
 URL:		http://spice-space.org/page/Spice-Gtk
 License:	LGPLv2+
 Source0:	http://www.spice-space.org/download/gtk/%{name}-%{version}.tar.bz2
-Patch0:		automake1.13.patch
-Patch1:		spice-gtk-0.14.usbredir.patch
 BuildRequires:	pkgconfig(cairo) >= 1.2.0
 BuildRequires:	pkgconfig(celt051) >= 0.5.1.1
 BuildRequires:	pkgconfig(gio-2.0) >= 2.10.0
@@ -62,6 +60,13 @@ BuildRequires:	pygtk2.0-devel
 BuildRequires:	vala
 BuildRequires:	vala-tools
 %endif
+
+%track
+prog %name = {
+	url = http://www.spice-space.org/download/gtk/
+	regex = %name-(__VER__)\.tar\.bz2
+	version = %version
+}
 
 %description
 Spice-GTK is a GTK client widget for accessing SPICE desktop 
@@ -151,11 +156,6 @@ Development files for %{name}.
 
 %prep
 %setup -q  -n spice-gtk-%{version} -c
-pushd spice-gtk-%{version}
-%patch0 -p1
-%patch1 -p1
-popd
-
 cp -a spice-gtk-%{version} spice-gtk3-%{version}
 
 %build
@@ -204,8 +204,8 @@ rm -f %{buildroot}%{_libdir}/python*/site-packages/*.la
 %find_lang %{name}
 
 %files -f %{name}.lang
-%{_bindir}/snappy
 %{_bindir}/spicy
+%{_bindir}/spicy-screenshot
 %{_bindir}/spicy-stats
 %{_bindir}/spice-client-glib-usb-acl-helper
 %{_datadir}/polkit-1/actions/org.spice-space.lowlevelusbaccess.policy
