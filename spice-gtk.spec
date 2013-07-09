@@ -61,6 +61,13 @@ BuildRequires:	vala
 BuildRequires:	vala-tools
 %endif
 
+%track
+prog %name = {
+	url = http://www.spice-space.org/download/gtk/
+	regex = %name-(__VER__)\.tar\.bz2
+	version = %version
+}
+
 %description
 Spice-GTK is a GTK client widget for accessing SPICE desktop 
 servers. This package contains two simple clients based on the 
@@ -149,7 +156,10 @@ Development files for %{name}.
 
 %prep
 %setup -q  -n spice-gtk-%{version} -c
+<<<<<<< HEAD
 
+=======
+>>>>>>> c17a8146dd417e1f53302bf7f47246168c5427ee
 cp -a spice-gtk-%{version} spice-gtk3-%{version}
 
 %build
@@ -198,8 +208,8 @@ rm -f %{buildroot}%{_libdir}/python*/site-packages/*.la
 %find_lang %{name}
 
 %files -f %{name}.lang
-%{_bindir}/snappy
 %{_bindir}/spicy
+%{_bindir}/spicy-screenshot
 %{_bindir}/spicy-stats
 %{_bindir}/spice-client-glib-usb-acl-helper
 %{_datadir}/polkit-1/actions/org.spice-space.lowlevelusbaccess.policy
