@@ -156,10 +156,6 @@ Development files for %{name}.
 
 %prep
 %setup -q  -n spice-gtk-%{version} -c
-<<<<<<< HEAD
-
-=======
->>>>>>> c17a8146dd417e1f53302bf7f47246168c5427ee
 cp -a spice-gtk-%{version} spice-gtk3-%{version}
 
 %build
