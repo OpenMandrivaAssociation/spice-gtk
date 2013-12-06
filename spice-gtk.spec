@@ -16,7 +16,7 @@
 
 Name:		spice-gtk
 Version:	0.20
-Release:	2
+Release:	3
 Summary:	A GTK client widget for accessing SPICE desktop servers
 Group:		Networking/Remote access
 URL:		http://spice-space.org/page/Spice-Gtk
