@@ -33,6 +33,7 @@ BuildRequires:	pkgconfig(gudev-1.0)
 BuildRequires:	pkgconfig(libcacard) >= 0.1.2
 BuildRequires:	pkgconfig(libpulse)
 BuildRequires:	pkgconfig(libpulse-mainloop-glib)
+BuildRequires:	pkgconfig(libsoup-2.4)
 BuildRequires:	pkgconfig(libusb-1.0) >= 1.0.9
 BuildRequires:	pkgconfig(libusbredirhost) >= 0.3.3
 BuildRequires:	pkgconfig(libusbredirparser-0.5)
