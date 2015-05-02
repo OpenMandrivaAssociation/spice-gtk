@@ -13,8 +13,8 @@
 %define develname	%mklibname -d %{name}
 
 Name:		spice-gtk
-Version:	0.25
-Release:	2
+Version:	0.28
+Release:	1
 Summary:	A GTK client widget for accessing SPICE desktop servers
 Group:		Networking/Remote access
 URL:		http://spice-space.org/page/Spice-Gtk
