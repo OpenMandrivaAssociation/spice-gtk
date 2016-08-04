@@ -43,7 +43,6 @@ BuildRequires:	pkgconfig(openssl)
 BuildRequires:	pkgconfig(pixman-1) >= 0.17.7
 BuildRequires:	pkgconfig(polkit-gobject-1)
 BuildRequires:	pkgconfig(spice-protocol) >= 0.10.1
-#BuildRequires:	pkgconfig(spice-client-glib-2.0)
 BuildRequires:	pkgconfig(x11)
 BuildRequires:	pkgconfig(xrandr)
 BuildRequires:	gtk-doc >= 1.14
