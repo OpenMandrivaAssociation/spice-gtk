@@ -5,16 +5,18 @@
 %define libglib		%mklibname spice-client-glib %{glibapi} %{glibmajor}
 %define glibgir		%mklibname spice-client-glib-gir %{glibapi}
 %define gtkapi		3.0
-%define gtkmajor	4
+%define gtkmajor	5
 %define libgtk		%mklibname spice-client-gtk %{gtkapi} %{gtkmajor}
 %define gtkgir		%mklibname spice-client-gtk-gir %{gtkapi}
 %define controllermajor	0
 %define libcontroller	%mklibname spice-controller %{controllermajor}
 %define develname	%mklibname -d %{name}
 
+%define _disable_rebuild_configure 1
+
 Name:		spice-gtk
-Version:	0.28
-Release:	2
+Version:	0.32
+Release:	1
 Summary:	A GTK client widget for accessing SPICE desktop servers
 Group:		Networking/Remote access
 URL:		http://spice-space.org/page/Spice-Gtk
@@ -139,7 +141,7 @@ Development files for %{name}.
 %endif
 	--enable-introspection=yes \
 	--enable-usbredir \
-	--with-pnp-ids-path=%{_datadir}/misc/pnp.ids
+	--with-pnp-ids-path=%{_datadir}/misc/pnp.ids LIBS=-lX11
 %make
 
 %install
