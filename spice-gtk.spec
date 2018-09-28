@@ -59,12 +59,12 @@ BuildRequires:	vala
 BuildRequires:	vala-tools
 %endif
 
-%track
-prog %name = {
-	url = http://www.spice-space.org/download/gtk/
-	regex = %name-(__VER__)\.tar\.bz2
-	version = %version
-}
+#track
+#prog %name = {
+#	url = http://www.spice-space.org/download/gtk/
+#	regex = %name-(__VER__)\.tar\.bz2
+#	version = %version
+#}
 
 %description
 Spice-GTK is a GTK client widget for accessing SPICE desktop 
