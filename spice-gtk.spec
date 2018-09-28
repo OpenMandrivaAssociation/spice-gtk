@@ -15,8 +15,8 @@
 %define _disable_rebuild_configure 1
 
 Name:		spice-gtk
-Version:	0.32
-Release:	2
+Version:	0.35
+Release:	1
 Summary:	A GTK client widget for accessing SPICE desktop servers
 Group:		Networking/Remote access
 URL:		http://spice-space.org/page/Spice-Gtk
@@ -42,7 +42,7 @@ BuildRequires:	pkgconfig(libusbredirparser-0.5)
 BuildRequires:	pkgconfig(openssl)
 BuildRequires:	pkgconfig(pixman-1) >= 0.17.7
 BuildRequires:	pkgconfig(polkit-gobject-1)
-BuildRequires:	pkgconfig(spice-protocol) >= 0.10.1
+BuildRequires:	pkgconfig(spice-protocol) >= 0.12.14
 BuildRequires:	pkgconfig(x11)
 BuildRequires:	pkgconfig(xrandr)
 BuildRequires:	gtk-doc >= 1.14
