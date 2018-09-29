@@ -8,8 +8,6 @@
 %define gtkmajor	5
 %define libgtk		%mklibname spice-client-gtk %{gtkapi} %{gtkmajor}
 %define gtkgir		%mklibname spice-client-gtk-gir %{gtkapi}
-%define controllermajor	0
-%define libcontroller	%mklibname spice-controller %{controllermajor}
 %define develname	%mklibname -d %{name}
 
 %define _disable_rebuild_configure 1
@@ -108,20 +106,11 @@ Conflicts: %{_lib}spice-gtk3.0_1 < 0.7.81-2
 %description -n %{gtkgir}
 GObject introspection interface library for %{name}.
 
-%package -n %{libcontroller}
-Summary: Runtime libraries for %{name}
-Group: System/Libraries
-Conflicts: %{_lib}spice-gtk3.0_1 < 0.7.81-2
-
-%description -n %{libcontroller}
-Runtime libraries for %{name}.
-
 %package -n %{develname}
 Summary: Development files for %{name}
 Group: Development/C
 Requires: %{libglib} = %{version}-%{release}
 Requires: %{libgtk} = %{version}-%{release}
-Requires: %{libcontroller} = %{version}-%{release}
 Provides: %{name}-devel = %{version}-%{release}
 Obsoletes: %{_lib}spice-gtk3.0-devel < 0.7.81-2
 
@@ -181,21 +170,14 @@ rm -f %{buildroot}%{_libdir}/python*/site-packages/*.la
 %files -n %{gtkgir}
 %{_libdir}/girepository-1.0/SpiceClientGtk-%{gtkapi}.typelib
 
-%files -n %{libcontroller}
-#{_libdir}/libspice-controller.so.%{controllermajor}
-#{_libdir}/libspice-controller.so.%{controllermajor}.*
-
 %files -n %{develname}
 %doc %{_datadir}/gtk-doc/html/spice-gtk
 %{_includedir}/spice-client-glib-2.0
 %{_includedir}/spice-client-gtk-3.0/
-%{_includedir}/spice-controller/
 %{_libdir}/libspice-client-glib-2.0.so
 %{_libdir}/libspice-client-gtk-3.0.so
-%{_libdir}/libspice-controller.so
 %{_libdir}/pkgconfig/spice-client-glib-2.0.pc
 %{_libdir}/pkgconfig/spice-client-gtk-3.0.pc
-%{_libdir}/pkgconfig/spice-controller.pc
 %{_datadir}/gir-1.0/SpiceClientGLib-2.0.gir
 %{_datadir}/gir-1.0/SpiceClientGtk-3.0.gir
 %if %{build_vala}
