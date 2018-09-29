@@ -182,8 +182,8 @@ rm -f %{buildroot}%{_libdir}/python*/site-packages/*.la
 %{_libdir}/girepository-1.0/SpiceClientGtk-%{gtkapi}.typelib
 
 %files -n %{libcontroller}
-%{_libdir}/libspice-controller.so.%{controllermajor}
-%{_libdir}/libspice-controller.so.%{controllermajor}.*
+#{_libdir}/libspice-controller.so.%{controllermajor}
+#{_libdir}/libspice-controller.so.%{controllermajor}.*
 
 %files -n %{develname}
 %doc %{_datadir}/gtk-doc/html/spice-gtk
