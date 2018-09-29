@@ -40,6 +40,7 @@ BuildRequires:	pkgconfig(libusb-1.0) >= 1.0.9
 BuildRequires:	pkgconfig(libusbredirhost) >= 0.3.3
 BuildRequires:	pkgconfig(libusbredirparser-0.5)
 BuildRequires:	pkgconfig(openssl)
+BuildRequires:	pkgconfig(opus)
 BuildRequires:	pkgconfig(pixman-1) >= 0.17.7
 BuildRequires:	pkgconfig(polkit-gobject-1)
 BuildRequires:	pkgconfig(spice-protocol) >= 0.12.14
