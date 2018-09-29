@@ -181,7 +181,6 @@ rm -f %{buildroot}%{_libdir}/python*/site-packages/*.la
 %{_datadir}/gir-1.0/SpiceClientGLib-2.0.gir
 %{_datadir}/gir-1.0/SpiceClientGtk-3.0.gir
 %if %{build_vala}
-%{_datadir}/vala/vapi/spice-protocol.vapi
 %{_datadir}/vala/vapi/spice-client-glib-%{glibapi}.deps
 %{_datadir}/vala/vapi/spice-client-glib-%{glibapi}.vapi
 %{_datadir}/vala/vapi/spice-client-gtk-%{gtkapi}.deps
