@@ -163,7 +163,7 @@ rm -f %{buildroot}%{_libdir}/python*/site-packages/*.la
 %{_bindir}/spicy
 %{_bindir}/spicy-screenshot
 %{_bindir}/spicy-stats
-%{_bindir}/spice-client-glib-usb-acl-helper
+#{_bindir}/spice-client-glib-usb-acl-helper
 %{_datadir}/polkit-1/actions/org.spice-space.lowlevelusbaccess.policy
 %{_mandir}/man1/spice-client.1*
 
