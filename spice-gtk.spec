@@ -133,6 +133,7 @@ Development files for %{name}.
 %build
 %configure \
 	--with-gtk=%{gtkapi} \
+	--disable-celt051 \
 %if %{build_vala}
 	--enable-vala \
 %else
