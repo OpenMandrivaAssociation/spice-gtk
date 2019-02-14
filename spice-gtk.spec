@@ -13,24 +13,25 @@
 %define _disable_rebuild_configure 1
 
 Name:		spice-gtk
-Version:	0.35
-Release:	2
+Version:	0.36
+Release:	1
 Summary:	A GTK client widget for accessing SPICE desktop servers
 Group:		Networking/Remote access
 URL:		http://spice-space.org/page/Spice-Gtk
 License:	LGPLv2+
 Source0:	http://www.spice-space.org/download/gtk/%{name}-%{version}.tar.bz2
 BuildRequires:	pkgconfig(cairo) >= 1.2.0
-BuildRequires:	pkgconfig(celt051) >= 0.5.1.1
 BuildRequires:	pkgconfig(gio-2.0) >= 2.10.0
 BuildRequires:	pkgconfig(glib-2.0) >= 2.22
 BuildRequires:	pkgconfig(gobject-2.0)
 BuildRequires:	pkgconfig(gobject-introspection-1.0) >= 0.9.4
+BuildRequires:	pkgconfig(gstreamer-1.0)
 BuildRequires:	pkgconfig(gthread-2.0) > 2.0.0
 BuildRequires:	pkgconfig(gtk+-3.0) >= 2.91.3
 BuildRequires:	pkgconfig(gtk+-x11-3.0)
 BuildRequires:	pkgconfig(gudev-1.0)
 BuildRequires:	pkgconfig(libcacard) >= 0.1.2
+BuildRequires:	pkgconfig(liblz4)
 BuildRequires:	pkgconfig(libpulse)
 BuildRequires:	pkgconfig(libpulse-mainloop-glib)
 BuildRequires:	pkgconfig(libsoup-2.4)
@@ -44,6 +45,7 @@ BuildRequires:	pkgconfig(polkit-gobject-1)
 BuildRequires:	pkgconfig(spice-protocol) >= 0.12.14
 BuildRequires:	pkgconfig(x11)
 BuildRequires:	pkgconfig(xrandr)
+BuildRequires:	acl-devel
 BuildRequires:	gtk-doc >= 1.14
 BuildRequires:	sasl-devel
 BuildRequires:	jpeg-devel
@@ -123,6 +125,7 @@ Development files for %{name}.
 %build
 %configure \
 	--with-gtk=%{gtkapi} \
+	--enable-polkit \
 	--disable-celt051 \
 %if %{build_vala}
 	--enable-vala \
@@ -152,7 +155,7 @@ rm -f %{buildroot}%{_libdir}/python*/site-packages/*.la
 %{_bindir}/spicy
 %{_bindir}/spicy-screenshot
 %{_bindir}/spicy-stats
-#{_bindir}/spice-client-glib-usb-acl-helper
+%{_bindir}/spice-client-glib-usb-acl-helper
 %{_datadir}/polkit-1/actions/org.spice-space.lowlevelusbaccess.policy
 %{_mandir}/man1/spice-client.1*
 
