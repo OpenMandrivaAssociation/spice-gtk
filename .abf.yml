@@ -1,2 +1,4 @@
+removed_sources:
+  spice-gtk-0.35.tar.bz2: ce859f77e625928a147b7ae73e5af45166861d16
 sources:
-  spice-gtk-0.32.tar.bz2: 488427ffd2ab42a2ede62ecb393417af691d1a88
+  spice-gtk-0.36.tar.bz2: 9ef3359817a143cd2209d72dd058536ad183413d
