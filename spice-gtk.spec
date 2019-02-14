@@ -26,10 +26,15 @@ BuildRequires:	pkgconfig(glib-2.0) >= 2.22
 BuildRequires:	pkgconfig(gobject-2.0)
 BuildRequires:	pkgconfig(gobject-introspection-1.0) >= 0.9.4
 BuildRequires:	pkgconfig(gstreamer-1.0)
+BuildRequires:	pkgconfig(gstreamer-base-1.0)
+BuildRequires:	pkgconfig(gstreamer-app-1.0)
+BuildRequires:	pkgconfig(gstreamer-audio-1.0)
+BuildRequires:	pkgconfig(gstreamer-video-1.0)
 BuildRequires:	pkgconfig(gthread-2.0) > 2.0.0
 BuildRequires:	pkgconfig(gtk+-3.0) >= 2.91.3
 BuildRequires:	pkgconfig(gtk+-x11-3.0)
 BuildRequires:	pkgconfig(gudev-1.0)
+BuildRequires:	pkgconfig(json-glib-1.0)
 BuildRequires:	pkgconfig(libcacard) >= 0.1.2
 BuildRequires:	pkgconfig(liblz4)
 BuildRequires:	pkgconfig(libpulse)
