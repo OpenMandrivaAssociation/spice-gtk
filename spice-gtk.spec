@@ -35,7 +35,7 @@ BuildRequires:	pkgconfig(gtk+-3.0) >= 2.91.3
 BuildRequires:	pkgconfig(gtk+-x11-3.0)
 BuildRequires:	pkgconfig(gudev-1.0)
 BuildRequires:	pkgconfig(json-glib-1.0)
-BuildRequires:	pkgconfig(libcacard) >= 0.1.2
+BuildRequires:	pkgconfig(libcacard) >= 2.5.1
 BuildRequires:	pkgconfig(liblz4)
 BuildRequires:	pkgconfig(libpulse)
 BuildRequires:	pkgconfig(libpulse-mainloop-glib)
@@ -132,6 +132,7 @@ Development files for %{name}.
 	--with-gtk=%{gtkapi} \
 	--enable-polkit \
 	--disable-celt051 \
+	--enable-smartcard \
 %if %{build_vala}
 	--enable-vala \
 %else
