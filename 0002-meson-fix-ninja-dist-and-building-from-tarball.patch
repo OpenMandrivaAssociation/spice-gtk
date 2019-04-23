@@ -1,0 +1,54 @@
+From 9b8c32c9ee422294278934ef48a865de3737661e Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Marc-Andr=C3=A9=20Lureau?= <marcandre.lureau@redhat.com>
+Date: Wed, 16 Jan 2019 17:20:58 +0400
+Subject: [PATCH spice-gtk 2/2] meson: fix ninja dist, and building from
+ tarball
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+meson doesn't handle git-version-gen correctly yet (see
+meson#688). Let's set the version manually for now.
+
+And a tag version vX.X will also fail to build, version_info[2]
+doesn't exist.
+
+Signed-off-by: Marc-André Lureau <marcandre.lureau@redhat.com>
+---
+ meson.build     | 2 +-
+ src/meson.build | 6 +++---
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/meson.build b/meson.build
+index d7062af..70dd318 100644
+--- a/meson.build
++++ b/meson.build
+@@ -2,7 +2,7 @@
+ # project definition
+ #
+ project('spice-gtk', 'c',
+-         version : run_command('build-aux/git-version-gen', '${MESON_SOURCE_ROOT}/.tarball-version', check : true).stdout().strip(),
++         version : '0.36',
+          license : 'LGPLv2.1',
+          meson_version : '>= 0.49')
+ 
+diff --git a/src/meson.build b/src/meson.build
+index d9614cb..c55db44 100644
+--- a/src/meson.build
++++ b/src/meson.build
+@@ -8,9 +8,9 @@ spice_gtk_include += [include_directories('.')]
+ version_info = meson.project_version().split('.')
+ major = '@0@'.format(version_info[0])
+ minor = '@0@'.format(version_info[1])
+-micro = version_info[2].split('-')[0]
+-if micro == ''
+-  micro = '0'
++micro = '0'
++if version_info.length() > 2
++  micro = version_info[2].split('-')[0]
+ endif
+ version_data = configuration_data()
+ version_data.set('SPICE_GTK_MAJOR_VERSION', major)
+-- 
+2.20.1.98.gecbdaf0899
+
