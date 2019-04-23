@@ -14,7 +14,7 @@
 
 Name:		spice-gtk
 Version:	0.36
-Release:	1
+Release:	2
 Summary:	A GTK client widget for accessing SPICE desktop servers
 Group:		Networking/Remote access
 URL:		http://spice-space.org/page/Spice-Gtk
@@ -117,6 +117,8 @@ GObject introspection interface library for %{name}.
 Summary: Development files for %{name}
 Group: Development/C
 Requires: %{libglib} = %{version}-%{release}
+Requires: %{libglib} = %{version}-%{release}
+Requires: %{glibgir} = %{version}-%{release}
 Requires: %{libgtk} = %{version}-%{release}
 Provides: %{name}-devel = %{version}-%{release}
 Obsoletes: %{_lib}spice-gtk3.0-devel < 0.7.81-2
