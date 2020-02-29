@@ -68,6 +68,7 @@ BuildRequires:	pkgconfig(liblz4)
 BuildRequires:	acl-devel
 BuildRequires:  json-glib-devel
 BuildRequires:	pkgconfig(spice-protocol) >= 0.12.15
+BuildRequires:  spice-vdagent
 BuildRequires:	python-six
 BuildRequires:  python2-six
 
