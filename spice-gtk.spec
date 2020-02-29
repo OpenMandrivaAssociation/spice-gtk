@@ -19,10 +19,14 @@ URL:            https://www.spice-space.org/spice-gtk.html
 License:	LGPLv2+
 Source0:        https://www.spice-space.org/download/gtk/%{name}-%{version}%{?_version_suffix}.tar.bz2
 Patch0001:      0001-meson-improve-gtk-doc-build.patch
-#Patch0002:      0002-meson-fix-ninja-dist-and-building-from-tarball.patch
-#Patch0003:      0003-spice-widget-Use-GdkSeat-API-on-Wayland.patch
-#Patch0004:      0004-spice-widget-Ungrab-mouse-on-leave-event-on-Wayland.patch
-#Patch0005:      0005-meson-ensure-correct-build-order-of-VAPI.patch
+
+Patch2:      0001-vmcstream-Fix-buffer-overflow-sending-data-to-task.patch
+Patch3:      0001-clipboard-do-not-release-between-client-grabs.patch
+Patch4:      0002-clipboard-do-not-release-between-remote-grabs.patch
+Patch5:      0003-fixup-clipboard-do-not-release-between-remote-grabs.patch
+Patch6:      0004-clipboard-do-not-delay-release-if-agent-has-no-relea.patch
+Patch7:      0005-clipboard-pre-condition-on-selection-value-256.patch
+Patch8:      0006-clipboard-implement-CAP_CLIPBOARD_GRAB_SERIAL.patch
 
 BuildRequires:	git-core
 BuildRequires:	meson
