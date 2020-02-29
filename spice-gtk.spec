@@ -42,6 +42,7 @@ BuildRequires:	pkgconfig(libcacard) >= 0.1.2
 BuildRequires:	pkgconfig(libphodav-2.0)
 BuildRequires:	pkgconfig(libusb-1.0) >= 1.0.16
 BuildRequires:	pkgconfig(libusbredirhost) >= 0.3.3
+BuildRequires:  pkgconfig(libdrm)
 BuildRequires:	pkgconfig(openssl)
 BuildRequires:	pkgconfig(opus) >= 0.9.14
 BuildRequires:	pkgconfig(pixman-1) >= 0.17.7
