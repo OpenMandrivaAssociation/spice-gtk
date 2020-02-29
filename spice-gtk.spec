@@ -20,6 +20,13 @@ License:	LGPLv2+
 Source0:        https://www.spice-space.org/download/gtk/%{name}-%{version}%{?_version_suffix}.tar.bz2
 Patch0001:      0001-meson-improve-gtk-doc-build.patch
 
+#              Attention! Achtung! Uwaga! Attenzione!                     #
+###########################################################################
+# Import cross patches spice-gtk, spice-protocol and spice-vdagent        #
+#           Keep patches for this three packages in sync (angry)          #
+###########################################################################
+
+
 Patch2:      0001-vmcstream-Fix-buffer-overflow-sending-data-to-task.patch
 Patch3:      0001-clipboard-do-not-release-between-client-grabs.patch
 Patch4:      0002-clipboard-do-not-release-between-remote-grabs.patch
