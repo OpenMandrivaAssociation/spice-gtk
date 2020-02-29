@@ -20,7 +20,7 @@ License:	LGPLv2+
 Source0:        https://www.spice-space.org/download/gtk/%{name}-%{version}%{?_version_suffix}.tar.bz2
 Patch0001:      0001-meson-improve-gtk-doc-build.patch
 #Patch0002:      0002-meson-fix-ninja-dist-and-building-from-tarball.patch
-Patch0003:      0003-spice-widget-Use-GdkSeat-API-on-Wayland.patch
+#Patch0003:      0003-spice-widget-Use-GdkSeat-API-on-Wayland.patch
 Patch0004:      0004-spice-widget-Ungrab-mouse-on-leave-event-on-Wayland.patch
 Patch0005:      0005-meson-ensure-correct-build-order-of-VAPI.patch
 
