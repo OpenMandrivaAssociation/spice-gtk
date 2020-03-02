@@ -1,0 +1,64 @@
+From 31a44bfd0acc3ae18682ae19ff1c8a8101bc96f4 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Marc-Andr=C3=A9=20Lureau?= <marcandre.lureau@redhat.com>
+Date: Fri, 22 Mar 2019 15:20:12 +0100
+Subject: [PATCH 4/6] clipboard: do not delay release if agent has "no release
+ on regrab"
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Signed-off-by: Marc-André Lureau <marcandre.lureau@redhat.com>
+---
+ src/channel-main.c      | 2 ++
+ src/spice-gtk-session.c | 9 ++++++++-
+ 2 files changed, 10 insertions(+), 1 deletion(-)
+
+diff --git a/src/channel-main.c b/src/channel-main.c
+index 4305dcd..adf6bab 100644
+--- a/src/channel-main.c
++++ b/src/channel-main.c
+@@ -222,6 +222,7 @@ static const char *agent_caps[] = {
+     [ VD_AGENT_CAP_AUDIO_VOLUME_SYNC   ] = "volume-sync",
+     [ VD_AGENT_CAP_MONITORS_CONFIG_POSITION ] = "monitors config position",
+     [ VD_AGENT_CAP_FILE_XFER_DISABLED ] = "file transfer disabled",
++    [ VD_AGENT_CAP_CLIPBOARD_NO_RELEASE_ON_REGRAB ] = "no release on re-grab",
+ };
+ #define NAME(_a, _i) ((_i) < SPICE_N_ELEMENTS(_a) ? (_a[(_i)] ?: "?") : "?")
+ 
+@@ -1333,6 +1334,7 @@ static void agent_announce_caps(SpiceMainChannel *channel)
+     VD_AGENT_SET_CAPABILITY(caps->caps, VD_AGENT_CAP_CLIPBOARD_SELECTION);
+     VD_AGENT_SET_CAPABILITY(caps->caps, VD_AGENT_CAP_MONITORS_CONFIG_POSITION);
+     VD_AGENT_SET_CAPABILITY(caps->caps, VD_AGENT_CAP_FILE_XFER_DETAILED_ERRORS);
++    VD_AGENT_SET_CAPABILITY(caps->caps, VD_AGENT_CAP_CLIPBOARD_NO_RELEASE_ON_REGRAB);
+ 
+     agent_msg_queue(channel, VD_AGENT_ANNOUNCE_CAPABILITIES, size, caps);
+     g_free(caps);
+diff --git a/src/spice-gtk-session.c b/src/spice-gtk-session.c
+index cbfe3bf..34ae4a1 100644
+--- a/src/spice-gtk-session.c
++++ b/src/spice-gtk-session.c
+@@ -1114,7 +1114,8 @@ static gboolean clipboard_release_timeout(gpointer user_data)
+  * sides, client and remote, racing for the clipboard grab, and
+  * believing each other is the owner.
+  *
+- * Workaround this problem by delaying the release event by 0.5 sec.
++ * Workaround this problem by delaying the release event by 0.5 sec,
++ * unless the no-release-on-regrab capability is present.
+  * FIXME: protocol change to solve the conflict and set client priority.
+  */
+ #define CLIPBOARD_RELEASE_DELAY 500 /* ms */
+@@ -1132,6 +1133,12 @@ static void clipboard_release_delay(SpiceMainChannel *main, guint selection,
+ 
+     clipboard_release_delay_remove(self, selection, true);
+ 
++    if (spice_main_channel_agent_test_capability(s->main,
++                                                 VD_AGENT_CAP_CLIPBOARD_NO_RELEASE_ON_REGRAB)) {
++        clipboard_release(self, selection);
++        return;
++    }
++
+     rel = g_new0(SpiceGtkClipboardRelease, 1);
+     rel->self = self;
+     rel->selection = selection;
+-- 
+2.23.0
