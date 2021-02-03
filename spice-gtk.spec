@@ -67,6 +67,7 @@ BuildRequires:	pkgconfig(json-glib-1.0)
 BuildRequires:	pkgconfig(spice-protocol) >= 0.12.15
 BuildRequires:	spice-vdagent
 BuildRequires:	python-six
+BuildRequires:	python3dist(pyparsing)
 
 %description
 Spice-GTK is a GTK client widget for accessing SPICE desktop
