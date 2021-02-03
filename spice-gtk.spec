@@ -1,24 +1,24 @@
 # Please keep this package in sync with FC
 
-%define glibapi		2.0
-%define glibmajor	8
-%define libglib		%mklibname spice-client-glib %{glibapi} %{glibmajor}
-%define glibgir		%mklibname spice-client-glib-gir %{glibapi}
-%define gtkmajor	5
-%define gtkapi3		3.0
-%define libgtk3		%mklibname spice-client-gtk %{gtkapi3} %{gtkmajor}
-%define gtkgir3		%mklibname spice-client-gtk-gir %{gtkapi3}
-%define develname	%mklibname -d %{name}
+%define glibapi 2.0
+%define glibmajor 8
+%define libglib %mklibname spice-client-glib %{glibapi} %{glibmajor}
+%define glibgir %mklibname spice-client-glib-gir %{glibapi}
+%define gtkmajor 5
+%define gtkapi3 3.0
+%define libgtk3 %mklibname spice-client-gtk %{gtkapi3} %{gtkmajor}
+%define gtkgir3 %mklibname spice-client-gtk-gir %{gtkapi3}
+%define develname %mklibname -d %{name}
 
 Name:		spice-gtk
-Version:	0.37
+Version:	0.39
 Release:	1
 Summary:	A GTK client widget for accessing SPICE desktop servers
 Group:		Networking/Remote access
-URL:            https://www.spice-space.org/spice-gtk.html
+URL:		https://www.spice-space.org/spice-gtk.html
 License:	LGPLv2+
-Source0:        https://www.spice-space.org/download/gtk/%{name}-%{version}%{?_version_suffix}.tar.bz2
-Patch0001:      0001-meson-improve-gtk-doc-build.patch
+Source0:	https://www.spice-space.org/download/gtk/%{name}-%{version}%{?_version_suffix}.tar.xz
+Patch0001:	0001-meson-improve-gtk-doc-build.patch
 
 #              Attention! Achtung! Uwaga! Attenzione!                     #
 ###########################################################################
@@ -53,7 +53,7 @@ BuildRequires:	pkgconfig(libcacard) >= 0.1.2
 BuildRequires:	pkgconfig(libphodav-2.0)
 BuildRequires:	pkgconfig(libusb-1.0) >= 1.0.16
 BuildRequires:	pkgconfig(libusbredirhost) >= 0.3.3
-BuildRequires:  pkgconfig(libdrm)
+BuildRequires:	pkgconfig(libdrm)
 BuildRequires:	pkgconfig(openssl)
 BuildRequires:	pkgconfig(opus) >= 0.9.14
 BuildRequires:	pkgconfig(pixman-1) >= 0.17.7
@@ -61,10 +61,9 @@ BuildRequires:	pkgconfig(polkit-gobject-1)
 BuildRequires:	pkgconfig(x11)
 BuildRequires:	pkgconfig(xrandr)
 BuildRequires:	sasl-devel
-BuildRequires:	jpeg-devel
+BuildRequires:	pkgconfig(libjpeg)
 BuildRequires:	gettext-devel
 BuildRequires:	intltool
-BuildRequires:	ldetect-lst
 BuildRequires:	vala-tools
 BuildRequires:	pkgconfig(vapigen)
 BuildRequires:	gtk-doc
@@ -73,11 +72,10 @@ BuildRequires:	usbutils
 BuildRequires:	pkgconfig(libsoup-2.4) >= 2.49.91
 BuildRequires:	pkgconfig(liblz4)
 BuildRequires:	acl-devel
-BuildRequires:  json-glib-devel
+BuildRequires:	json-glib-devel
 BuildRequires:	pkgconfig(spice-protocol) >= 0.12.15
-BuildRequires:  spice-vdagent
+BuildRequires:	spice-vdagent
 BuildRequires:	python-six
-BuildRequires:  python2-six
 
 %description
 Spice-GTK is a GTK client widget for accessing SPICE desktop
@@ -87,48 +85,48 @@ library:
   spicy-screenshot is a tool to capture screen-shots of a SPICE desktop.
 
 %package -n %{libglib}
-Summary: Runtime libraries for %{name}
-Group: System/Libraries
-Conflicts: %{_lib}spice-gtk3.0_1 < 0.7.81-2
+Summary:	Runtime libraries for %{name}
+Group:		System/Libraries
+Conflicts:	%{_lib}spice-gtk3.0_1 < 0.7.81-2
 
 %description -n %{libglib}
 Runtime libraries for %{name}.
 
 %package -n %{glibgir}
-Summary: GObject introspection interface library for %{name}
-Group: System/Libraries
-Requires: %{libglib} = %{version}-%{release}
-Conflicts: %{_lib}spice-gtk3.0_1 < 0.7.81-2
+Summary:	GObject introspection interface library for %{name}
+Group:		System/Libraries
+Requires:	%{libglib} = %{version}-%{release}
+Conflicts:	%{_lib}spice-gtk3.0_1 < 0.7.81-2
 
 %description -n %{glibgir}
 GObject introspection interface library for %{name}.
 
 %package -n %{libgtk3}
-Summary: Runtime libraries for %{name}
-Group: System/Libraries
-Obsoletes: %{_lib}spice-gtk3.0_1 < 0.7.81-2
+Summary:	Runtime libraries for %{name}
+Group:		System/Libraries
+Obsoletes:	%{_lib}spice-gtk3.0_1 < 0.7.81-2
 
 %description -n %{libgtk3}
 Runtime libraries for %{name}.
 
 %package -n %{gtkgir3}
-Summary: GObject introspection interface library for %{name}
-Group: System/Libraries
-Requires: %{libgtk3} = %{version}-%{release}
-Conflicts: %{_lib}spice-gtk3.0_1 < 0.7.81-2
+Summary:	GObject introspection interface library for %{name}
+Group:		System/Libraries
+Requires:	%{libgtk3} = %{version}-%{release}
+Conflicts:	%{_lib}spice-gtk3.0_1 < 0.7.81-2
 
 %description -n %{gtkgir3}
 GObject introspection interface library for %{name}.
 
 %package -n %{develname}
-Summary: Development files for %{name}
-Group: Development/C
-Requires: %{libglib} = %{version}-%{release}
-Requires: %{libgtk3} = %{version}-%{release}
-Requires: %{glibgir} = %{version}-%{release}
-Requires: %{gtkgir3} = %{version}-%{release}
-Provides: %{name}-devel = %{version}-%{release}
-Obsoletes: %{_lib}spice-gtk3.0-devel < 0.7.81-2
+Summary:	Development files for %{name}
+Group:		Development/C
+Requires:	%{libglib} = %{version}-%{release}
+Requires:	%{libgtk3} = %{version}-%{release}
+Requires:	%{glibgir} = %{version}-%{release}
+Requires:	%{gtkgir3} = %{version}-%{release}
+Provides:	%{name}-devel = %{version}-%{release}
+Obsoletes:	%{_lib}spice-gtk3.0-devel < 0.7.81-2
 
 %description -n %{develname}
 Development files for %{name}.
