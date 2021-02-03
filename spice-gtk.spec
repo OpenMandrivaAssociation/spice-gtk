@@ -18,22 +18,12 @@ Group:		Networking/Remote access
 URL:		https://www.spice-space.org/spice-gtk.html
 License:	LGPLv2+
 Source0:	https://www.spice-space.org/download/gtk/%{name}-%{version}%{?_version_suffix}.tar.xz
-Patch0001:	0001-meson-improve-gtk-doc-build.patch
 
 #              Attention! Achtung! Uwaga! Attenzione!                     #
 ###########################################################################
 # Import cross patches spice-gtk, spice-protocol and spice-vdagent        #
 #           Keep patches for this three packages in sync (angry)          #
 ###########################################################################
-
-
-Patch2:      0001-vmcstream-Fix-buffer-overflow-sending-data-to-task.patch
-Patch3:      0001-clipboard-do-not-release-between-client-grabs.patch
-Patch4:      0002-clipboard-do-not-release-between-remote-grabs.patch
-Patch5:      0003-fixup-clipboard-do-not-release-between-remote-grabs.patch
-Patch6:      0004-clipboard-do-not-delay-release-if-agent-has-no-relea.patch
-Patch7:      0005-clipboard-pre-condition-on-selection-value-256.patch
-Patch8:      0006-clipboard-implement-CAP_CLIPBOARD_GRAB_SERIAL.patch
 
 BuildRequires:	git-core
 BuildRequires:	meson
@@ -60,7 +50,8 @@ BuildRequires:	pkgconfig(pixman-1) >= 0.17.7
 BuildRequires:	pkgconfig(polkit-gobject-1)
 BuildRequires:	pkgconfig(x11)
 BuildRequires:	pkgconfig(xrandr)
-BuildRequires:	sasl-devel
+BuildRequires:	pkgconfig(libcap-ng)
+BuildRequires:	pkgconfig(libsasl2)
 BuildRequires:	pkgconfig(libjpeg)
 BuildRequires:	gettext-devel
 BuildRequires:	intltool
@@ -71,8 +62,8 @@ BuildRequires:	vala
 BuildRequires:	usbutils
 BuildRequires:	pkgconfig(libsoup-2.4) >= 2.49.91
 BuildRequires:	pkgconfig(liblz4)
-BuildRequires:	acl-devel
-BuildRequires:	json-glib-devel
+BuildRequires:	pkgconfig(libacl)
+BuildRequires:	pkgconfig(json-glib-1.0)
 BuildRequires:	pkgconfig(spice-protocol) >= 0.12.15
 BuildRequires:	spice-vdagent
 BuildRequires:	python-six
@@ -132,7 +123,7 @@ Obsoletes:	%{_lib}spice-gtk3.0-devel < 0.7.81-2
 Development files for %{name}.
 
 %prep
-%autosetup -S git_am
+%autosetup -p1
 
 %build
 # meson macro has --auto-features=enabled
