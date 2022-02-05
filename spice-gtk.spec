@@ -139,8 +139,6 @@ export LDFLAGS="%{ldflags} -lm"
 
 %meson \
   %{mjpegflag} \
-  %{celt051flag} \
-  %{pulseflag} \
   -Dusb-acl-helper-dir=%{_libexecdir}/spice-gtk-%{_arch}/
 
 %meson_build
