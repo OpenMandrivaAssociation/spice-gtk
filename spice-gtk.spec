@@ -65,6 +65,8 @@ BuildRequires:	pkgconfig(liblz4)
 BuildRequires:	pkgconfig(libacl)
 BuildRequires:	pkgconfig(json-glib-1.0)
 BuildRequires:	pkgconfig(spice-protocol) >= 0.12.15
+BuildRequires:	pkgconfig(libva-x11)
+BuildRequires:	(wayland-protocols)
 BuildRequires:	spice-vdagent
 BuildRequires:	python-six
 BuildRequires:	python3dist(pyparsing)
