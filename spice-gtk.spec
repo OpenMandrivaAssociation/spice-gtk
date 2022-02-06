@@ -70,7 +70,6 @@ BuildRequires:	wayland-protocols-devel
 BuildRequires:	spice-vdagent
 BuildRequires:	python-six
 BuildRequires:	python3dist(pyparsing)
-Requires:	wayland-protocols
 
 %description
 Spice-GTK is a GTK client widget for accessing SPICE desktop
