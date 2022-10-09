@@ -12,7 +12,7 @@
 
 Name:		spice-gtk
 Version:	0.41
-Release:	1
+Release:	2
 Summary:	A GTK client widget for accessing SPICE desktop servers
 Group:		Networking/Remote access
 URL:		https://www.spice-space.org/spice-gtk.html
@@ -40,7 +40,7 @@ BuildRequires:	pkgconfig(gstreamer-base-1.0)
 BuildRequires:	pkgconfig(gstreamer-app-1.0)
 BuildRequires:	pkgconfig(gstreamer-audio-1.0)
 BuildRequires:	pkgconfig(libcacard) >= 0.1.2
-BuildRequires:	pkgconfig(libphodav-2.0)
+BuildRequires:	pkgconfig(libphodav-3.0)
 BuildRequires:	pkgconfig(libusb-1.0) >= 1.0.16
 BuildRequires:	pkgconfig(libusbredirhost) >= 0.3.3
 BuildRequires:	pkgconfig(libdrm)
