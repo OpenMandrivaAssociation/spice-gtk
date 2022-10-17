@@ -12,7 +12,7 @@
 
 Name:		spice-gtk
 Version:	0.41
-Release:	2
+Release:	3
 Summary:	A GTK client widget for accessing SPICE desktop servers
 Group:		Networking/Remote access
 URL:		https://www.spice-space.org/spice-gtk.html
@@ -60,7 +60,7 @@ BuildRequires:	pkgconfig(vapigen)
 BuildRequires:	gtk-doc
 BuildRequires:	vala
 BuildRequires:	usbutils
-BuildRequires:	pkgconfig(libsoup-2.4) >= 2.49.91
+BuildRequires:	pkgconfig(libsoup-3.0)
 BuildRequires:	pkgconfig(liblz4)
 BuildRequires:	pkgconfig(libacl)
 BuildRequires:	pkgconfig(json-glib-1.0)
