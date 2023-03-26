@@ -12,7 +12,7 @@
 
 Name:		spice-gtk
 Version:	0.42
-Release:	2
+Release:	3
 Summary:	A GTK client widget for accessing SPICE desktop servers
 Group:		Networking/Remote access
 URL:		https://www.spice-space.org/spice-gtk.html
@@ -137,7 +137,8 @@ Development files for %{name}.
 # pulse is deprecated upstream
 %global pulseflag -Dpulse=disabled
 sed -i '/-Werror/d' subprojects/spice-common/meson.build
-export LDFLAGS="%{ldflags} -lm"
+# lld 16 results in build failure because the symbol export files are broken
+export LDFLAGS="%{ldflags} -lm -fuse-ld=bfd"
 
 %meson \
   %{mjpegflag} \
